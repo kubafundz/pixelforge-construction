@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BuildCore Construction delivers residential, commercial and renovation projects with quality craftsmanship.">
+  <title>BuildCore | Building Tomorrow</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #101820;
+      --surface: #17232d;
+      --gold: #d5a84c;
+      --white: #ffffff;
+      --muted: #aab5bf;
+      --line: rgba(255,255,255,.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; object-fit: cover; }
+    .container { width: min(1160px, 90%); margin: auto; }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Manrope', sans-serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span,
+    .footer-brand span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a { color: #e3e8ec; font-size: 14px; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta, .btn {
+      display: inline-block;
+      padding: 13px 23px;
+      background: var(--gold);
+      color: #101820;
+      font-weight: 800;
+      border-radius: 3px;
+      transition: .25s;
+    }
+
+    .nav-cta:hover, .btn:hover {
+      background: #f0c66e;
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 760px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,16,23,.95), rgba(8,16,23,.55)),
+        url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=85') center/cover;
+      padding: 150px 0 100px;
+    }
+
+    .hero-content { max-width: 720px; }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(43px, 6.5vw, 76px);
+      line-height: 1.12;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .hero p {
+      max-width: 560px;
+      color: #d0d8df;
+      margin-bottom: 32px;
+      font-size: 17px;
+    }
+
+    .hero-actions { display: flex; gap: 15px; flex-wrap: wrap; }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.5);
+      padding: 12px 23px;
+      font-weight: 700;
+      border-radius: 3px;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .stats {
+      background: var(--gold);
+      color: #111a21;
+      padding: 30px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .stat { text-align: center; }
+    .stat strong { display: block; font-size: 31px; font-weight: 800; }
+
+    .stat span {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    section { padding: 100px 0; }
+    .section-heading { max-width: 650px; margin-bottom: 45px; }
+
+    .section-heading h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p { color: var(--muted); }
+    .gold { color: var(--gold); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 32px;
+      transition: .3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--gold);
+    }
+
+    .service-icon { font-size: 34px; margin-bottom: 20px; }
+    .service-card h3 { margin-bottom: 12px; font-size: 20px; }
+    .service-card p { color: var(--muted); font-size: 14px; }
+
+    .about { background: #151f28; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .about-image { position: relative; }
+    .about-image img { height: 510px; }
+
+    .about-label {
+      position: absolute;
+      bottom: 25px;
+      right: -20px;
+      background: var(--gold);
+      color: #101820;
+      padding: 20px 27px;
+      font-weight: 800;
+    }
+
+    .about-content h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 43px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about-content p { color: var(--muted); margin-bottom: 18px; }
+
+    .check-list { list-style: none; margin: 25px 0 30px; }
+    .check-list li { margin: 12px 0; }
+
+    .check-list li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: 800;
+      margin-right: 12px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project { position: relative; overflow: hidden; background: var(--surface); }
+    .project img { height: 310px; transition: .4s; }
+    .project:hover img { transform: scale(1.06); }
+    .project-info { padding: 20px; }
+
+    .project-info span {
+      color: var(--gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .project-info h3 { margin-top: 6px; font-size: 19px; }
+
+    .cta {
+      text-align: center;
+      background:
+        linear-gradient(rgba(9,17,24,.88),rgba(9,17,24,.9)),
+        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=85') center/cover;
+    }
+
+    .cta h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(33px, 5vw, 53px);
+      line-height: 1.2;
+      max-width: 750px;
+      margin: 0 auto 20px;
+    }
+
+    .cta p { color: #c1cbd3; margin-bottom: 30px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 50px;
+    }
+
+    .contact-info h2 {
+      font-size: 40px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p { color: var(--muted); margin-bottom: 25px; }
+    .contact-detail { margin: 20px 0; }
+
+    .contact-detail strong {
+      display: block;
+      color: var(--gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-form {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px;
+      background: #101820;
+      border: 1px solid var(--line);
+      color: white;
+      font: inherit;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold);
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    .contact-form button {
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      font: inherit;
+    }
+
+    #formMessage {
+      margin-top: 15px;
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 100;
+      background: #25D366;
+      color: #ffffff;
+      padding: 14px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      box-shadow: 0 5px 20px rgba(0,0,0,.3);
+      transition: .25s;
+    }
+
+    .whatsapp-button:hover {
+      background: #1da851;
+      transform: translateY(-4px);
+    }
+
+    footer {
+      background: #0b1218;
+      padding: 35px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer p { color: #8d9aa4; font-size: 13px; }
+    .footer-brand { font-weight: 800; font-size: 20px; }
+
+    @media(max-width: 850px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 86px;
+        left: 0;
+        width: 100%;
+        background: #101820;
+        padding: 25px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+
+      .services-grid, .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-label { right: 10px; }
+    }
+
+    @media(max-width: 560px) {
+      .hero { min-height: 680px; }
+      h1 { letter-spacing: -1.5px; }
+      section { padding: 75px 0; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .services-grid, .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .about-image img { height: 350px; }
+      .contact-form { padding: 22px; }
+
+      .whatsapp-button {
+        right: 15px;
+        bottom: 15px;
+        padding: 12px 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">BUILD<span>CORE.</span></a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About Us</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a href="#contact" class="nav-cta">Get a Quote ↗</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Building Excellence Since 2008</div>
+        <h1>We Build More Than Structures. <span>We Build Futures.</span></h1>
+        <p>
+          From architectural vision to the final finishing touch,
+          BuildCore delivers exceptional construction solutions
+          designed to stand the test of time.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn">Explore Our Projects ↗</a>
+          <a href="#contact" class="btn-outline">Start Your Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="container stats-grid">
+      <div class="stat"><strong>15+</strong><span>Years Experience</span></div>
+      <div class="stat"><strong>240+</strong><span>Projects Completed</span></div>
+      <div class="stat"><strong>98%</strong><span>Client Satisfaction</span></div>
+      <div class="stat"><strong>45+</strong><span>Expert Professionals</span></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">What We Do</div>
+        <h2>Construction Solutions Built Around <span class="gold">Your Vision.</span></h2>
+        <p>We combine experience, innovation and craftsmanship to deliver projects that exceed expectations.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">🏗️</div>
+          <h3>General Construction</h3>
+          <p>Complete construction management and execution for residential and commercial developments.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3>Residential Building</h3>
+          <p>Beautifully designed homes built with attention to detail, quality materials and lasting value.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>Commercial Projects</h3>
+          <p>Modern offices, retail spaces and commercial buildings designed for business success.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🔨</div>
+          <h3>Renovations</h3>
+          <p>Transforming existing spaces with professional remodeling, upgrades and improvements.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">📐</div>
+          <h3>Design & Planning</h3>
+          <p>Thoughtful project planning, design coordination and construction consulting.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🛠️</div>
+          <h3>Project Management</h3>
+          <p>Reliable oversight, scheduling and quality control from project start to completion.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1100&q=85" alt="Modern completed building interior">
+        <div class="about-label">Built on Trust. Driven by Quality.</div>
+      </div>
+
+      <div class="about-content">
+        <div class="eyebrow">Who We Are</div>
+        <h2>Creating Spaces That <span class="gold">Inspire.</span></h2>
+        <p>
+          BuildCore is a construction company committed to delivering
+          dependable building solutions with quality, integrity and
+          professionalism at every stage.
+        </p>
+        <p>
+          Our team works closely with every client to understand their
+          vision and turn ambitious ideas into outstanding spaces.
+        </p>
+
+        <ul class="check-list">
+          <li>Experienced construction professionals</li>
+          <li>Quality materials and workmanship</li>
+          <li>Transparent project communication</li>
+          <li>Commitment to safety and reliability</li>
+        </ul>
+
+        <a href="#contact" class="btn">Work With Us ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Our Portfolio</div>
+        <h2>Projects That Speak for <span class="gold">Themselves.</span></h2>
+        <p>A selection of sample project categories showcasing the quality and style of our construction work.</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=85" alt="Modern luxury residence">
+          <div class="project-info">
+            <span>Residential</span>
+            <h3>Modern Luxury Residence</h3>
+          </div>
+        </article>
+
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85" alt="Commercial building">
+          <div class="project-info">
+            <span>Commercial</span>
+            <h3>Corporate Office Development</h3>
+          </div>
+        </article>
+
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85" alt="Modern architectural interior">
+          <div class="project-info">
+            <span>Interior</span>
+            <h3>Contemporary Living Space</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="eyebrow">Let's Build Something Great</div>
+      <h2>Your Next Great Project Starts With <span class="gold">One Conversation.</span></h2>
+      <p>Tell us what you have in mind. Our team is ready to help you take the next step.</p>
+      <a href="#contact" class="btn">Discuss Your Project ↗</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+
+      <div class="contact-info">
+        <div class="eyebrow">Get In Touch</div>
+        <h2>Let's Talk About <span class="gold">Your Project.</span></h2>
+        <p>Have a building project in mind? Contact our team and let's discuss how we can help bring your vision to life.</p>
+
+        <div class="contact-detail">
+          <strong>Email</strong>
+          <span>info@buildcore.example</span>
+        </div>
+
+        <div class="contact-detail">
+          <strong>Phone</strong>
+          <span>+1 (000) 123-4567</span>
+        </div>
+
+        <div class="contact-detail">
+          <strong>Office</strong>
+          <span>Your Business Address, Your City</span>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <input type="text" id="name" placeholder="Your Name" required>
+          <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+
+        <input type="tel" id="phone" placeholder="Phone Number">
+
+        <select id="service" required>
+          <option value="">Select a Service</option>
+          <option>General Construction</option>
+          <option>Residential Building</option>
+          <option>Commercial Projects</option>
+          <option>Renovations</option>
+          <option>Design & Planning</option>
+          <option>Project Management</option>
+        </select>
+
+        <textarea id="message" placeholder="Tell us about your project..." required></textarea>
+
+        <button type="submit" class="btn">Send Project Enquiry ↗</button>
+
+        <p id="formMessage" role="status" aria-live="polite"></p>
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+<a
+  href="https://wa.me/15551234567?text=Hello%20BuildCore,%20I%20would%20like%20to%20discuss%20a%20construction%20project."
+  class="whatsapp-button"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Contact us on WhatsApp"
+>
+  ☎ WhatsApp
+</a>
+
+<footer>
+  <div class="container footer-content">
+    <a href="#" class="footer-brand">BUILD<span>CORE.</span></a>
+    <p>© <span id="year"></span> BuildCore Construction. All rights reserved.</p>
+    <p>Designed by PixelForge Studio.</p>
+  </div>
+</footer>
+
+<script>
+  // MOBILE NAVIGATION
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+
+    menuToggle.textContent =
+      navLinks.classList.contains('active') ? '✕' : '☰';
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.textContent = '☰';
+    });
+  });
+
+  // AUTOMATIC FOOTER YEAR
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+
+  // WHATSAPP CONTACT FORM
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+
+    // DEMO NUMBER: Replace with the client's WhatsApp number.
+    // Include country code without +, spaces or dashes.
+    const whatsappNumber = '15551234567';
+
+    const whatsappMessage =
+      `Hello BuildCore! I would like to make a project enquiry.\n\n` +
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone || 'Not provided'}\n` +
+      `Service: ${service}\n\n` +
+      `Project Details:\n${message}`;
+
+    const whatsappURL =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    const formMessage = document.getElementById('formMessage');
+
+    formMessage.textContent =
+      'Opening WhatsApp with your project enquiry...';
+
+    const whatsappWindow = window.open(
+      whatsappURL,
+      '_blank',
+      'noopener,noreferrer'
+    );
+
+    // Fallback if the browser blocks the new window.
+    if (!whatsappWindow) {
+      window.location.href = whatsappURL;
+    }
+  });
+</script>
+
+</body>
+</html>
